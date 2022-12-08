@@ -8,5 +8,5 @@ int main()
     SNVector<int> v2(arr, 3);
     SNVector<int> v3(v2);
     v2 = v1;
-    cout << "hello\n";
+    
 }
