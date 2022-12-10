@@ -23,7 +23,7 @@ public:
     SNVector(const SNVector& vector);             	// Initialize with a copy
     ~SNVector();			                    // Delete allocated memory
     SNVector& operator=(const SNVector& vector);           // Copy assignment
-    SNVector& operator=(const SNVector&& vector);          // Move assignment
+    SNVector& operator=(SNVector&& vector)noexcept;          // Move assignment
 
     // Access operations
     T& operator[](int);                          // Access item by reference

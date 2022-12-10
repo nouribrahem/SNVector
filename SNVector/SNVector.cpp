@@ -68,7 +68,40 @@ SNVector<T>& SNVector<T>::operator=(const SNVector& vector)
             vec[i] = vector.vec[i];
         }
     }
+    cout << "copy\n";
     return *this;
 }
-//template <class T>
-//SNVector<T>& SNVector<T>::operator=(const SNVector&& vector)
+template <class T>
+SNVector<T>& SNVector<T>::operator=(SNVector&& vector) noexcept
+{
+    if (this != &vector)
+    {
+        size = vector.size;
+        vector.size = 0;
+        capacity = 2;
+        while (capacity < size)
+        {
+            capacity *= 2;
+        }
+        vector.capacity = 0;
+        vec = new T[capacity];
+        for (int i = 0; i < size; i++)
+        {
+            vec[i] = vector.vec[i];
+        }
+        vector.vec = nullptr;
+        delete[] vector.vec;
+    }
+    cout << "move\n";
+    return *this;
+}
+template <class T>
+int SNVector<T>::Size()
+{
+    return size;
+}
+template <class T>
+int SNVector<T>::Capacity()
+{
+    return capacity;
+}
