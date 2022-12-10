@@ -114,3 +114,36 @@ ostream& operator << (ostream& out, SNVector<T> vector)
     }
     return out;
 }
+template <class T>
+T& SNVector<T>::operator[](int index)
+{
+    return vec[index];
+}
+template <class T>
+int SNVector<T>::push_back(T item)
+{
+    SNVector<T> temp(*this);
+    size++;
+    while (capacity < size)
+    {
+        capacity *= 2;
+    }
+    vec = new T[capacity];
+    for(int i = 0 ; i < size-1 ; i++)
+    {
+        vec[i] = temp[i];
+    }
+    vec[size - 1] = item;
+    return size;
+}
+template <class T>
+T SNVector<T>::pop_back()
+{
+    SNVector<T> temp(*this);
+    size--;
+    for(int i = 0 ; i < size-1 ; i++)
+    {
+        vec[i] = temp[i];
+    }
+    return vec[size - 1];
+}
