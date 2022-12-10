@@ -105,3 +105,12 @@ int SNVector<T>::Capacity()
 {
     return capacity;
 }
+template <class T>
+ostream& operator << (ostream& out, SNVector<T> vector)
+{
+    for (int i = 0; i < size; i++)
+    {
+        out << vector.vec[i] << endl;
+    }
+    return out;
+}
