@@ -55,7 +55,7 @@ SNVector<T>& SNVector<T>::operator=(const SNVector& vector)
 {
     if (this != &vector)
     {
-        delete[] vec;
+        
         size = vector.size;
         capacity = 2;
         while (capacity < size)
@@ -90,7 +90,7 @@ SNVector<T>& SNVector<T>::operator=(SNVector&& vector) noexcept
             vec[i] = vector.vec[i];
         }
         vector.vec = nullptr;
-        delete[] vector.vec;
+        
     }
     cout << "move\n";
     return *this;
