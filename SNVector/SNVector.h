@@ -5,7 +5,10 @@
 
 
 using namespace std;
-
+template <class T>
+class SNVector;
+template <class T>
+ostream& operator << (ostream& out, SNVector<T> vector);
 template <class T>
 
 class SNVector {
@@ -61,7 +64,7 @@ public:
     bool empty();                                        // Return true if size is 0
 
     // Friends
-    friend ostream& operator << (ostream& out, SNVector<T> vector);
+    friend ostream& operator << <T> (ostream& out, SNVector<T> vector);
 };
 
 #endif //SNVECTOR_SNVECTOR_H

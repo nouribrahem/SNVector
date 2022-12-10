@@ -108,9 +108,9 @@ int SNVector<T>::Capacity()
 template <class T>
 ostream& operator << (ostream& out, SNVector<T> vector)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < vector.size; i++)
     {
-        out << vector.vec[i] << endl;
+        out << vector.vec[i] << endl;   
     }
     return out;
 }
