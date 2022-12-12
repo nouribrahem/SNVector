@@ -147,3 +147,4 @@ T SNVector<T>::pop_back()
     }
     return vec[size - 1];
 }
+
