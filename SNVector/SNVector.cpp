@@ -122,18 +122,24 @@ T& SNVector<T>::operator[](int index)
 template <class T>
 int SNVector<T>::push_back(T item)
 {
-    SNVector<T> temp(*this);
+   if(capacity == size)
+    {
+        SNVector<T> temp(*this);
+        size++;
+        while (capacity < size)
+        {
+            capacity *= 2;
+        }
+        vec = new T[capacity];
+        for(int i = 0 ; i < size-1 ; i++)
+        {
+            vec[i] = temp[i];
+        }
+        vec[size - 1] = item;
+    }
+    else
+        vec[size] = item;
     size++;
-    while (capacity < size)
-    {
-        capacity *= 2;
-    }
-    vec = new T[capacity];
-    for(int i = 0 ; i < size-1 ; i++)
-    {
-        vec[i] = temp[i];
-    }
-    vec[size - 1] = item;
     return size;
 }
 template <class T>
