@@ -140,9 +140,11 @@ int SNVector<T>::push_back(T item)
         }
         vec[size - 1] = item;
     }
-    else
-        vec[size] = item;
-    size++;
+   else
+   {
+       vec[size] = item;
+       size++;
+   }
     return size;
 }
 template <class T>
@@ -194,23 +196,29 @@ void SNVector<T>::clear()
 template <class T>
 void SNVector<T>::insert(int iterator, T item)
 {
-    SNVector<T> temp(*this);
-    size++;
-    if (capacity == size)
+    if (iterator == size)
     {
-        while (capacity < size)
+        this->push_back(item);
+    }
+    else
+    {
+        SNVector<T> temp(*this);
+        if (capacity == size)
         {
             capacity *= 2;
+            vec = new T[capacity];
         }
-        vec = new T[capacity];
-    }
-    for (int i = 0, j = 0; i < size; i++, j++)
-    {
-        if (i == iterator)
+
+        size++;
+        for (int i = 0, j = 0; i < size; i++, j++)
         {
-            vec[i] = item;
-            i++;
+            if (i == iterator)
+            {
+                vec[i] = item;
+                i++;
+            }
+            vec[i] = temp[j];
         }
-        vec[i] = temp[j];
     }
+    
 }
