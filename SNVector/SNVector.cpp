@@ -123,6 +123,10 @@ int SNVector<T>::push_back(T item)
 {
    if(capacity == size)
     {
+        if (capacity == 0)
+        {
+            capacity = 2;
+        }
         SNVector<T> temp(*this);
         size++;
         while (capacity < size)
@@ -184,6 +188,6 @@ template <class T>
 void SNVector<T>::clear()
 {
     size = 0;
-    capacity = 2;
+    capacity = 0;
     vec = nullptr;
 }
