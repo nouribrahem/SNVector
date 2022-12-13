@@ -19,6 +19,7 @@ template <class T>
 SNVector<T>::~SNVector()
 {
     delete[] vec;
+    cout << "bye\n";
 }
 template <class T>
 SNVector<T>::SNVector(T* arr, int n)
@@ -68,7 +69,6 @@ SNVector<T>& SNVector<T>::operator=(const SNVector& vector)
             vec[i] = vector.vec[i];
         }
     }
-    cout << "copy\n";
     return *this;
 }
 template <class T>
@@ -92,7 +92,6 @@ SNVector<T>& SNVector<T>::operator=(SNVector&& vector) noexcept
         vector.vec = nullptr;
         
     }
-    cout << "move\n";
     return *this;
 }
 template <class T>
@@ -181,4 +180,10 @@ void SNVector<T>::erase(int iterator1, int iterator2)
     }
     *this = temp;
 }
-
+template <class T>
+void SNVector<T>::clear()
+{
+    size = 0;
+    capacity = 2;
+    vec = nullptr;
+}
