@@ -153,4 +153,32 @@ T SNVector<T>::pop_back()
     }
     return vec[size - 1];
 }
+template <class T>
+void SNVector<T>::erase(int iterator)
+{
+    SNVector<T> temp(size - 1);
+    for(int i = 0 , j = 0; i < size ; i++ )
+    {
+        if(i != iterator)
+        {
+            temp[j] = vec[i];
+            j++;
+        }
+    }
+    *this = temp;
+}
+template <class T>
+void SNVector<T>::erase(int iterator1, int iterator2)
+{
+    SNVector<T> temp(size - iterator2 + iterator1);
+    for(int i = 0 , j = 0; i < size ; i++ )
+    {
+        if(i < iterator1 || i >= iterator2)
+        {
+            temp[j] = vec[i];
+            j++;
+        }
+    }
+    *this = temp;
+}
 
