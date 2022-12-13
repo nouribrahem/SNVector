@@ -42,7 +42,7 @@ public:
     // iterator 1 <= iterator 2 otherwise do nothing
     // Throw exception if any iterator outside range
     void clear();                                            // Delete all vector content
-    void insert(int iterator, T);                              // Insert item at iterator
+    void insert(int iterator, T item);                              // Insert item at iterator
     // Throw exception if invalid
 
 // Iterators 		// Supports *, + and ++ operations at least

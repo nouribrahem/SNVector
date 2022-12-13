@@ -13,9 +13,10 @@ int main()
     //cout << v2.pop_back();
     //v2.erase(1);
     //v2.erase(5 , 6);
-    v2.clear();
-    cout << v2.Size()<< v2.Capacity() << ' ' << v2 << endl;
-    v2.push_back(33);
-    cout << v2.Size() << v2.Capacity()<<' ' << v2 << endl;
+    //v2.clear();
+    //cout << v2.Size()<< v2.Capacity() << ' ' << v2 << endl;
+    //v2.push_back(33);
+    //cout << v2.Size() << v2.Capacity()<<' ' << v2 << endl;
+    v2.insert(1, 55);
     return 0;
 }

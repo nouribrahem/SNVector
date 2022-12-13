@@ -19,7 +19,6 @@ template <class T>
 SNVector<T>::~SNVector()
 {
     delete[] vec;
-    cout << "bye\n";
 }
 template <class T>
 SNVector<T>::SNVector(T* arr, int n)
@@ -121,12 +120,13 @@ T& SNVector<T>::operator[](int index)
 template <class T>
 int SNVector<T>::push_back(T item)
 {
+    if (capacity == 0)
+    {
+        capacity = 2;
+        vec = new T[capacity];
+    }
    if(capacity == size)
     {
-        if (capacity == 0)
-        {
-            capacity = 2;
-        }
         SNVector<T> temp(*this);
         size++;
         while (capacity < size)
@@ -190,4 +190,27 @@ void SNVector<T>::clear()
     size = 0;
     capacity = 0;
     vec = nullptr;
+}
+template <class T>
+void SNVector<T>::insert(int iterator, T item)
+{
+    if (capacity == size)
+    {
+        SNVector<T> temp(*this);
+        size++;
+        while (capacity < size)
+        {
+            capacity *= 2;
+        }
+        vec = new T[capacity];
+    }
+    for (int i = 0, j = 0; i < size; i++; j++)
+    {
+        if (i == iterator)
+        {
+            vec[i] = item;
+            i++;
+        }
+        vec[i] = temp[j];
+    }
 }
