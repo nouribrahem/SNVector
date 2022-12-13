@@ -36,13 +36,13 @@ public:
     int push_back(T);                                // Add item to end of vec & return # of items
     // Increase capacity of needed
     T pop_back();                                        // Remove and return last element in vec
-    void erase(SNVector<T> iterator);                               // Remove item at iterator
+    void erase(int iterator);                               // Remove item at iterator
     // Throw exception if invalid iter
-    void erase(SNVector<T> iterator1, SNVector<T> iterator2);                   // Remove items between
+    void erase(int iterator1, int iterator2);                   // Remove items between
     // iterator 1 <= iterator 2 otherwise do nothing
     // Throw exception if any iterator outside range
     void clear();                                            // Delete all vector content
-    void insert(SNVector<T> iterator, T);                              // Insert item at iterator
+    void insert(int iterator, T);                              // Insert item at iterator
     // Throw exception if invalid
 
 // Iterators 		// Supports *, + and ++ operations at least
@@ -66,5 +66,6 @@ public:
     // Friends
     friend ostream& operator << <T> (ostream& out, SNVector<T> vector);
 };
+
 
 #endif //SNVECTOR_SNVECTOR_H
