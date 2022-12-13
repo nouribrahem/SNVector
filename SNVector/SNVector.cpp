@@ -194,17 +194,17 @@ void SNVector<T>::clear()
 template <class T>
 void SNVector<T>::insert(int iterator, T item)
 {
+    SNVector<T> temp(*this);
+    size++;
     if (capacity == size)
     {
-        SNVector<T> temp(*this);
-        size++;
         while (capacity < size)
         {
             capacity *= 2;
         }
         vec = new T[capacity];
     }
-    for (int i = 0, j = 0; i < size; i++; j++)
+    for (int i = 0, j = 0; i < size; i++, j++)
     {
         if (i == iterator)
         {

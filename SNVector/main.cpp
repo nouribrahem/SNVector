@@ -18,5 +18,6 @@ int main()
     //v2.push_back(33);
     //cout << v2.Size() << v2.Capacity()<<' ' << v2 << endl;
     v2.insert(1, 55);
+    cout << v2.Size() << v2.Capacity() << ' ' << v2 << endl;
     return 0;
 }
