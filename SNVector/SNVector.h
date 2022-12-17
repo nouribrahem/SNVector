@@ -49,8 +49,8 @@ public:
 // Can use: typedef T* iterator
     // Or u can use std::iterator so you can
 // apply STL algorithms on XYVector
-    T* begin();	                                     // Return an iterator (T*)
-    T* end();                                 	// Return an iterator (T*)
+    int begin();	                                     // Return an iterator (T*)
+    int end();                                 	// Return an iterator (T*)
 
     // Comparison operations
     bool operator==(const SNVector<T>& vector);                     // Return true if ==
