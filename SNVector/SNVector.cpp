@@ -194,25 +194,28 @@ void SNVector<T>::erase(iterator1 i1, iterator2 i2)
         {
             throw 0;
         }
-        if (i2 < &vec[0] || i2 >= &vec[size - 1])
+        if (i1 < &vec[0] || i2 >= &vec[size])
         {
             throw 1;
         }
-        int ss = size - (i2 - i1);
-        SNVector<T> temp(ss);
-        for (int i = 0, j = 0; i < size; i++)
+        if(i1 != i2)
         {
-            if (&vec[i] < i1 || &vec[i] >= i2)
+            int s = size - 1 - int(i2 - i1);
+            SNVector<T> temp(s);
+            for (int i = 0, j = 0; i < size; i++)
             {
-                temp[j] = vec[i];
-                j++;
+                if (&vec[i] < i1 || &vec[i] > i2)
+                {
+                    temp[j] = vec[i];
+                    j++;
+                }
             }
+            *this = temp;
         }
-        if (i1 == i2)
+        else if (i1 == i2)
         {
-            temp.erase(i1);
+            this->erase(i1);
         }
-        *this = temp;
     }
     catch (...)
     {
