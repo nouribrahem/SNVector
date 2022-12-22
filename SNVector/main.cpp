@@ -12,8 +12,8 @@ int main()
     //v2.push_back(4);
     //v2.pop_back();
     //v2.pop_back();
-    //cout << v2;
-    //v2.erase(2,2);
+//    cout << v2;
+    v2.erase(v2.begin() , v2.end() - 6);
     //v2.erase(5 , 6);
     //v2.clear();
     //cout << v2.Size()<< v2.Capacity() << ' ' << v2 << endl;

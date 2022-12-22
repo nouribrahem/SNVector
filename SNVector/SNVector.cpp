@@ -1,5 +1,6 @@
 #include "SNVector.h"
 
+
 template <class T>
 SNVector<T>::SNVector(int num)
 {
@@ -55,7 +56,7 @@ SNVector<T>& SNVector<T>::operator=(const SNVector& vector)
 {
     if (this != &vector)
     {
-        
+
         size = vector.size;
         capacity = 2;
         while (capacity < size)
@@ -89,7 +90,7 @@ SNVector<T>& SNVector<T>::operator=(SNVector&& vector) noexcept
             vec[i] = vector.vec[i];
         }
         vector.vec = nullptr;
-        
+
     }
     return *this;
 }
@@ -170,18 +171,18 @@ T SNVector<T>::pop_back()
     return vec[size - 1];
 }
 template <class T>
-void SNVector<T>::erase(int iterator)
+void SNVector<T>::erase(iterator iter)
 {
     try
     {
-        if (iterator < 0 || iterator >= size)
+        if (iter < &vec[0] || iter >= &vec[size - 1])
         {
-            throw iterator;
+            throw iter;
         }
         SNVector<T> temp(size - 1);
         for (int i = 0, j = 0; i < size; i++)
         {
-            if (i != iterator)
+            if (&vec[i] != iter)
             {
                 temp[j] = vec[i];
                 j++;
@@ -196,32 +197,36 @@ void SNVector<T>::erase(int iterator)
 
 }
 template <class T>
-void SNVector<T>::erase(int iterator1, int iterator2)
+void SNVector<T>::erase(iterator1 i1, iterator2 i2)
 {
     try
     {
-        if (iterator1 < 0 || iterator1 > iterator2)
+        if (i1 < &vec[0] || i1 > i2)
         {
-            throw iterator1;
+            throw 0;
         }
-        if (iterator2 < 0 || iterator2 >= size)
+        if (i1 < &vec[0] || i2 >= &vec[size])
         {
-            throw iterator2;
+            throw 1;
         }
-        SNVector<T> temp(size - iterator2 + iterator1);
-        for (int i = 0, j = 0; i < size; i++)
+        if(i1 != i2)
         {
-            if (i < iterator1 || i >= iterator2)
+            int s = size - 1 - int(i2 - i1);
+            SNVector<T> temp(s);
+            for (int i = 0, j = 0; i < size; i++)
             {
-                temp[j] = vec[i];
-                j++;
+                if (&vec[i] < i1 || &vec[i] > i2)
+                {
+                    temp[j] = vec[i];
+                    j++;
+                }
             }
+            *this = temp;
         }
-        if (iterator1 == iterator2)
+        else if (i1 == i2)
         {
-            temp.erase(iterator1);
+            this->erase(i1);
         }
-        *this = temp;
     }
     catch (...)
     {
@@ -236,53 +241,43 @@ void SNVector<T>::clear()
     vec = nullptr;
 }
 template <class T>
-void SNVector<T>::insert(int iterator, T item)
+void SNVector<T>::insert(iterator iter, T item)
 {
-    try
+    if (iterator == size)
     {
-        if (iterator < 0 || iterator > size)
+        this->push_back(item);
+    }
+    else
+    {
+        SNVector<T> temp(*this);
+        if (capacity == size)
         {
-            throw iterator;
+            capacity *= 2;
+            vec = new T[capacity];
         }
-        if (iterator == size)
-        {
-            this->push_back(item);
-        }
-        else
-        {
-            SNVector<T> temp(*this);
-            if (capacity == size)
-            {
-                capacity *= 2;
-                vec = new T[capacity];
-            }
 
-            size++;
-            for (int i = 0, j = 0; i < size; i++, j++)
+        size++;
+        for (int i = 0, j = 0; i < size; i++, j++)
+        {
+            if (i == iterator)
             {
-                if (i == iterator)
-                {
-                    vec[i] = item;
-                    i++;
-                }
-                vec[i] = temp.vec[j];
+                vec[i] = item;
+                i++;
             }
+            vec[i] = temp[j];
         }
     }
-    catch (...)
-    {
-        cout << "invalid index!, insertion not done\n";
-    } 
+    
 }
 template <class T>
-int SNVector<T>::begin()
+T* SNVector<T>::begin()
 {
-    return 0;
+    return &vec[0];
 }
 template <class T>
-int SNVector<T>::end()
+T* SNVector<T>::end()
 {
-    return size -1;
+    return &vec[size - 1];
 }
 template <class T>
 bool SNVector<T>::operator==(const SNVector<T>& vector)

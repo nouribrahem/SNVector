@@ -5,6 +5,8 @@
 
 
 using namespace std;
+
+
 template <class T>
 class SNVector;
 template <class T>
@@ -16,7 +18,9 @@ private:
     int size;
     int capacity;
     T* vec;
-
+    typedef T* iterator;
+    typedef T* iterator1;
+    typedef T* iterator2;
 public:
     // Constructors and Big 4
     SNVector(int num = 2);		        	            // Initialize by specific capacity
@@ -36,21 +40,21 @@ public:
     int push_back(T);                                // Add item to end of vec & return # of items
     // Increase capacity of needed
     T pop_back();                                        // Remove and return last element in vec
-    void erase(int iterator);                               // Remove item at iterator
+    void erase(iterator);                               // Remove item at iterator
     // Throw exception if invalid iter
-    void erase(int iterator1, int iterator2);                   // Remove items between
+    void erase(iterator1, iterator2);                   // Remove items between
     // iterator 1 <= iterator 2 otherwise do nothing
     // Throw exception if any iterator outside range
     void clear();                                            // Delete all vector content
-    void insert(int iterator, T item);                              // Insert item at iterator
+    void insert(iterator, T item);                              // Insert item at iterator
     // Throw exception if invalid
 
 // Iterators 		// Supports *, + and ++ operations at least
 // Can use: typedef T* iterator
     // Or u can use std::iterator so you can
 // apply STL algorithms on XYVector
-    int begin();	                                     // Return an iterator (T*)
-    int end();                                 	// Return an iterator (T*)
+    iterator begin();	                                     // Return an iterator (T*)
+    iterator end();                                 	// Return an iterator (T*)
 
     // Comparison operations
     bool operator==(const SNVector<T>& vector);                     // Return true if ==
