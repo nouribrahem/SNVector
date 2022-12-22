@@ -115,7 +115,18 @@ ostream& operator << (ostream& out, SNVector<T> vector)
 template <class T>
 T& SNVector<T>::operator[](int index)
 {
-    return vec[index];
+    try
+    {
+        if (index >= size || index < 0)
+        {
+            throw index;
+        }
+        return vec[index];
+    }
+    catch (...)
+    {
+        cout << "invalid index!\n";
+    }
 }
 template <class T>
 int SNVector<T>::push_back(T item)
@@ -227,31 +238,41 @@ void SNVector<T>::clear()
 template <class T>
 void SNVector<T>::insert(int iterator, T item)
 {
-    if (iterator == size)
+    try
     {
-        this->push_back(item);
-    }
-    else
-    {
-        SNVector<T> temp(*this);
-        if (capacity == size)
+        if (iterator < 0 || iterator > size)
         {
-            capacity *= 2;
-            vec = new T[capacity];
+            throw iterator;
         }
-
-        size++;
-        for (int i = 0, j = 0; i < size; i++, j++)
+        if (iterator == size)
         {
-            if (i == iterator)
+            this->push_back(item);
+        }
+        else
+        {
+            SNVector<T> temp(*this);
+            if (capacity == size)
             {
-                vec[i] = item;
-                i++;
+                capacity *= 2;
+                vec = new T[capacity];
             }
-            vec[i] = temp[j];
+
+            size++;
+            for (int i = 0, j = 0; i < size; i++, j++)
+            {
+                if (i == iterator)
+                {
+                    vec[i] = item;
+                    i++;
+                }
+                vec[i] = temp.vec[j];
+            }
         }
     }
-    
+    catch (...)
+    {
+        cout << "invalid index!, insertion not done\n";
+    } 
 }
 template <class T>
 int SNVector<T>::begin()
