@@ -175,7 +175,7 @@ void SNVector<T>::erase(iterator iter)
 {
     try
     {
-        if (iter < &vec[0] || iter >= &vec[size - 1])
+        if (iter < &vec[0] || iter > &vec[size - 1])
         {
             throw iter;
         }

@@ -12,8 +12,10 @@ int main()
     //v2.push_back(4);
     //v2.pop_back();
     //v2.pop_back();
-//    cout << v2;
-    v2.erase(v2.begin() , v2.end() - 6);
+    //cout << v2;
+    v2.erase(v2.begin()+2 , v2.end());
+    //v2.erase(v2.end());
+    cout << v2;
     //v2.erase(5 , 6);
     //v2.clear();
     //cout << v2.Size()<< v2.Capacity() << ' ' << v2 << endl;
@@ -26,6 +28,6 @@ int main()
     //cout << v2.Size() << v2.Capacity() << ' ' << v2 << endl;
     //cout << (v2 == v3) << (v3 < v2) << endl;
     //cout << v2.begin() << ' ' << v2.end();
-    cout <<v2[0]<< v2[-7] << endl;
+    //cout <<v2[0]<< v2[-7] << endl;
     return 0;
 }

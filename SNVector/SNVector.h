@@ -3,71 +3,55 @@
 
 #include <iostream>
 
-
 using namespace std;
-
 
 template <class T>
 class SNVector;
+
 template <class T>
 ostream& operator << (ostream& out, SNVector<T> vector);
-template <class T>
 
+template <class T>
 class SNVector {
 private:
+
     int size;
     int capacity;
     T* vec;
+
     typedef T* iterator;
     typedef T* iterator1;
     typedef T* iterator2;
+
 public:
-    // Constructors and Big 4
-    SNVector(int num = 2);		        	            // Initialize by specific capacity
-    // No content is added, size = 0
-    // Assign a default size value
-    SNVector(T* arr, int  n);	                // Initialize by n items from array
-    SNVector(const SNVector& vector);             	// Initialize with a copy
-    ~SNVector();			                    // Delete allocated memory
-    SNVector& operator=(const SNVector& vector);           // Copy assignment
-    SNVector& operator=(SNVector&& vector)noexcept;          // Move assignment
+    SNVector(int num = 2);		        	            
+    SNVector(T* arr, int  n);	                
+    SNVector(const SNVector& vector);             	
+    ~SNVector();			                    
+    SNVector& operator=(const SNVector& vector);           
+    SNVector& operator=(SNVector&& vector)noexcept;          
 
-    // Access operations
-    T& operator[](int);                          // Access item by reference
-    // Throw an exception if out of range
+    T& operator[](int);                          
+    
+    int push_back(T);                               
+    T pop_back();                                        
+    void erase(iterator);                               
+    void erase(iterator1, iterator2);                  
+    void clear();                                            
+    void insert(iterator, T item);                             
 
-// Modifying operations
-    int push_back(T);                                // Add item to end of vec & return # of items
-    // Increase capacity of needed
-    T pop_back();                                        // Remove and return last element in vec
-    void erase(iterator);                               // Remove item at iterator
-    // Throw exception if invalid iter
-    void erase(iterator1, iterator2);                   // Remove items between
-    // iterator 1 <= iterator 2 otherwise do nothing
-    // Throw exception if any iterator outside range
-    void clear();                                            // Delete all vector content
-    void insert(iterator, T item);                              // Insert item at iterator
-    // Throw exception if invalid
+    iterator begin();	                                     
+    iterator end();                                 	
 
-// Iterators 		// Supports *, + and ++ operations at least
-// Can use: typedef T* iterator
-    // Or u can use std::iterator so you can
-// apply STL algorithms on XYVector
-    iterator begin();	                                     // Return an iterator (T*)
-    iterator end();                                 	// Return an iterator (T*)
+    bool operator==(const SNVector<T>& vector);                     
+    bool operator< (const SNVector<T>& vector);                     
+    
+    int Size();                                       
+    int Capacity();                                       
+    int resize();                                            
+    bool empty();                                        
 
-    // Comparison operations
-    bool operator==(const SNVector<T>& vector);                     // Return true if ==
-    bool operator< (const SNVector<T>& vector);                     // Compares item by item
-    // Return true if first different item in this is < in other
 
-// Capacity operations
-    int Size();                                         // Return current size of vec
-    int Capacity();                                       // Return size of current allocated array
-    int resize();                                            // Relocate to bigger space
-    bool empty();                                        // Return true if size is 0
-
-    // Friends
     friend ostream& operator << <T> (ostream& out, SNVector<T> vector);
 };
 
