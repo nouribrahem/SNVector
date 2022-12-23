@@ -7,29 +7,38 @@ int main()
     int arr[7] = {1, 2 ,3 , 4, 5 , 6 , 7};
     SNVector<int> v2(arr , 7);
     SNVector<int> v3(v2);
-    //v2 = move(v1);
-    //cout << v2[2];
-    //v2.push_back(4);
-    //v2.pop_back();
-    //v2.pop_back();
-    //cout << v2;
-    //v2.erase(v2.begin() , v2.begin()+2);
-    //v2.erase(v2.end());
-    //cout << v2;
-    //v2.erase(5 , 6);
-    //v2.clear();
-    //cout << v2.Size()<< v2.Capacity() << ' ' << v2 << endl;
-    //v2.push_back(33);
-    //cout << v2.Size() << v2.Capacity()<<' ' << v2 << endl;
-    v2.insert(v2.begin(), 55);
-    //cout << *(v2.begin()) << endl;
-    cout << v2;
-    //v2.insert(7, 45);
-    //v2.insert(8, 22);
-    //v2.insert(2, 787);
-    //cout << v2.Size() << v2.Capacity() << ' ' << v2 << endl;
-    //cout << (v2 == v3) << (v3 < v2) << endl;
-    //cout << v2.begin() << ' ' << v2.end();
-    //cout <<v2[0]<< v2[-7] << endl;
+    cout << "v2: " << v2 << endl;
+    
+    v2.pop_back();
+    cout << "v2 after pop: " << v2 << endl;
+
+    v2.push_back(4);
+    cout << "v2 after push: " << v2 << endl;
+
+    v2.erase(v2.begin());
+    cout << "v2 after erase: " << v2 << endl;
+
+    v2.erase(v2.begin()+4,v2.end());
+    cout << "v2 after erase: " << v2 << endl;
+
+    v2.clear();
+    cout << "v2 after clear: " << v2 << endl;
+
+    v2.push_back(3);
+    cout << "v2 after push: " << v2 << ' ' << " size of v2: " << v2.Size() << endl;
+
+    cout << "current capacity: " << v2.Capacity() << endl;
+    cout << "after resize: " << v2.resize() << endl;
+
+    cout << "v3: " << v3 << endl << "v2: " << v2 << endl;
+    cout << "v2.empty(): " << v2.empty() << " / " << "v2 == v3: " << (v2 == v3) << " / " << "v2 < v3: " << (v2 < v3) << endl;
+    
+    
+    cout << "////////////exceptions////////////////\n";
+
+    v2[150] = 99;
+    v2.erase(v2.begin(), v2.end() + 22);
+    v2.erase(v2.end() + 4);
+    
     return 0;
 }

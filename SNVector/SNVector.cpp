@@ -10,7 +10,7 @@ SNVector<T>::SNVector(int num)
         capacity *= 2;
     }
     vec = new T[capacity];
-    size = num;
+    size = 0;
     for (int i = 0; i < size; i++)
     {
         vec[i] = 0;
@@ -78,11 +78,7 @@ SNVector<T>& SNVector<T>::operator=(SNVector&& vector) noexcept
     {
         size = vector.size;
         vector.size = 0;
-        capacity = 2;
-        while (capacity < size)
-        {
-            capacity *= 2;
-        }
+        capacity = vector.capacity;
         vector.capacity = 0;
         vec = new T[capacity];
         for (int i = 0; i < size; i++)
@@ -109,7 +105,7 @@ ostream& operator << (ostream& out, SNVector<T> vector)
 {
     for (int i = 0; i < vector.size; i++)
     {
-        out << vector.vec[i] << endl;
+        out << vector.vec[i] << ' ';
     }
     return out;
 }
@@ -122,12 +118,19 @@ T& SNVector<T>::operator[](int index)
         {
             throw index;
         }
-        return vec[index];
+        else
+        {
+            return vec[index];
+        }
+        
     }
     catch (...)
     {
+        T s = T(NULL);
         cout << "invalid index!\n";
+        return s;
     }
+    
 }
 template <class T>
 int SNVector<T>::push_back(T item)
@@ -180,6 +183,7 @@ void SNVector<T>::erase(iterator iter)
             throw iter;
         }
         SNVector<T> temp(size - 1);
+        temp.size = size - 1;
         for (int i = 0, j = 0; i < size; i++)
         {
             if (&vec[i] != iter)
@@ -213,6 +217,7 @@ void SNVector<T>::erase(iterator1 i1, iterator2 i2)
         {
             int s = size - 1 - int(i2 - i1);
             SNVector<T> temp(s);
+            temp.size = s;
             for (int i = 0, j = 0; i < size; i++)
             {
                 if (&vec[i] < i1 || &vec[i] > i2)
@@ -315,7 +320,8 @@ bool SNVector<T>::operator< (const SNVector<T>& vector)
 template <class T>
 int SNVector<T>::resize()
 {
-    SNVector<T> temp(this->capacity);
+    SNVector<T> temp(this->capacity * 2);
+    temp.size = size;
     for (int i = 0; i < size; i++)
     {
         temp.vec[i] = vec[i];
