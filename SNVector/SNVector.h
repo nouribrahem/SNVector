@@ -40,7 +40,7 @@ public:
     void clear();                                            
     void insert(iterator, T item);                             
 
-    iterator begin();	                                     
+    iterator begin();
     iterator end();                                 	
 
     bool operator==(const SNVector<T>& vector);                     

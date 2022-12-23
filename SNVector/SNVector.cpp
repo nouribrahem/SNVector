@@ -270,12 +270,12 @@ void SNVector<T>::insert(iterator iter, T item)
     
 }
 template <class T>
-T* SNVector<T>::begin()
+typename SNVector<T>::iterator SNVector<T>::begin()
 {
     return &vec[0];
 }
 template <class T>
-T* SNVector<T>::end()
+typename SNVector<T>::iterator SNVector<T>::end()
 {
     return &vec[size - 1];
 }
