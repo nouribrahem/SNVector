@@ -243,7 +243,7 @@ void SNVector<T>::clear()
 template <class T>
 void SNVector<T>::insert(iterator iter, T item)
 {
-    if (iter == size)
+    if (iterator == size)
     {
         this->push_back(item);
     }
@@ -259,7 +259,7 @@ void SNVector<T>::insert(iterator iter, T item)
         size++;
         for (int i = 0, j = 0; i < size; i++, j++)
         {
-            if (i == iter)
+            if (i == iterator)
             {
                 vec[i] = item;
                 i++;
@@ -267,7 +267,7 @@ void SNVector<T>::insert(iterator iter, T item)
             vec[i] = temp[j];
         }
     }
-    
+
 }
 template <class T>
 typename SNVector<T>::iterator SNVector<T>::begin()
