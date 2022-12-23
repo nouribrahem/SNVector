@@ -22,6 +22,7 @@ int main()
     //v2.push_back(33);
     //cout << v2.Size() << v2.Capacity()<<' ' << v2 << endl;
     v2.insert(v2.begin(), 55);
+    //cout << *(v2.begin()) << endl;
     cout << v2;
     //v2.insert(7, 45);
     //v2.insert(8, 22);
