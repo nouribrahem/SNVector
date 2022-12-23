@@ -334,6 +334,3 @@ bool SNVector<T>::empty()
         return true;
     }
 }
-//template <class T>
-//template <class T>
-//template <class T>
