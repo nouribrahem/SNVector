@@ -1,4 +1,4 @@
-#include "SNVector.h"
+﻿#include "SNVector.h"
 
 
 template <class T>
@@ -11,7 +11,7 @@ SNVector<T>::SNVector(int num)
     }
     vec = new T[capacity];
     size = 0;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < capacity; i++)
     {
         vec[i] = 0;
     }
@@ -135,6 +135,8 @@ T& SNVector<T>::operator[](int index)
 template <class T>
 int SNVector<T>::push_back(T item)
 {
+    // bec after clear, move.
+    // فاااااضي
     if (capacity == 0)
     {
         capacity = 2;
@@ -255,6 +257,7 @@ void SNVector<T>::insert(iterator iter, T item)
     else
     {
         SNVector<T> temp(*this);
+        int index = int(iter - vec);
         if (capacity == size)
         {
             capacity *= 2;
@@ -264,7 +267,7 @@ void SNVector<T>::insert(iterator iter, T item)
         size++;
         for (int i = 0, j = 0; i < size; i++, j++)
         {
-            if (&vec[i] == iter)
+            if (i == index)
             {
                 vec[i] = item;
                 i++;

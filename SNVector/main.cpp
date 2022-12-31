@@ -27,6 +27,11 @@ int main()
     v2.push_back(3);
     cout << "v2 after push: " << v2 << ' ' << " size of v2: " << v2.Size() << endl;
 
+    v3.insert(v3.end(), 44);
+    v3.insert(v3.begin(), 66);
+    v3.insert(v3.begin() + 3, 77);
+    cout << "v3 after insert: " << v3 << ' ' << " size of v3: " << v3.Size() << endl;
+
     cout << "current capacity: " << v2.Capacity() << endl;
     cout << "after resize: " << v2.resize() << endl;
 
